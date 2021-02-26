@@ -4,7 +4,7 @@ This is the official repository to release the code and datasets in the paper "[
 
 ## Using Dual Emotion Features for Fake News Detection
 
-![1](./framework.pdf)
+![1](https://github.com/RMSnow/WWW2021/blob/master/framework.png)
 
 An overall framework of using Dual Emotion Features for fake news detection. Dual Emotion Features consist of three components: 
 
@@ -17,6 +17,8 @@ An overall framework of using Dual Emotion Features for fake news detection. Dua
 Dual Emotion Features are concatenated with the features from **d)** Fake News Detector (here, BiGRU as an example) for the final prediction of veracity.
 
 ## Datasets
+
+The datasets are available at https://drive.google.com/drive/folders/1pjK0BYiiJt0Ya2nRIrOLCVo-o53sYRBV?usp=sharing.
 
 ### RumourEval-19
 
