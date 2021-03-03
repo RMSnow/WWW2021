@@ -2,7 +2,7 @@
 
 This is the official repository to release the code and datasets in the paper "[Mining Dual Emotion for Fake News Detection](https://arxiv.org/abs/1903.01728)", WWW 2021.
 
-## Using Dual Emotion Features for Fake News Detection
+## Mining Dual Emotion for Fake News Detection
 
 ![1](https://github.com/RMSnow/WWW2021/blob/master/framework.png)
 
@@ -54,6 +54,10 @@ Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-2
 |                         | Chinese  | `resources/Chinese/BosonNLP`                                 |
 | Other Auxilary Features | English  | [Wiki: List of emoticons](https://en.wikipedia.org/wiki/List_of_emoticons), `resources/English/HowNet`, `resources/English/others` |
 |                         | Chinese  | `resources/Chinese/HowNet`, `resources/English/others`       |
+
+## Code [COMMING SOON STAY TUNED]
+
+The code is in the folder `code`.
 
 # Citation
 
