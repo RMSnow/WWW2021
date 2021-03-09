@@ -35,7 +35,7 @@ class MLP5Layers:
                        kernel_regularizer=l2(self.l2_param))(dense2)
         dense4 = Dense(16, activation='relu',
                        kernel_regularizer=l2(self.l2_param))(dense3)
-        output = Dense(self.category_num, activation='sigmoid',
+        output = Dense(self.category_num, activation='softmax',
                        kernel_regularizer=l2(self.l2_param))(dense4)
 
         model = Model(inputs=[se_input], outputs=output)

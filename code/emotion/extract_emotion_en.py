@@ -7,7 +7,7 @@ import pandas as pd
 import numpy as np
 
 # ============================== Category ==============================
-nvidia_emotions = ['angry', 'anticipation', 'disgust',
+nvidia_emotions = ['anger', 'anticipation', 'disgust',
                    'fear', 'joy', 'sadness', 'surprise', 'trust']
 nvidia_emotions.sort()
 
@@ -308,7 +308,7 @@ def extract_publisher_emotion(content, content_words, emotions_labels_dict, emot
 
 def extract_social_emotion(comments, comments_words, mean_emotions_labels_dict, max_emotions_labels_dict, mean_emotions_probs_dict, max_emotions_probs_dict):
     if len(comments) == 0:
-        arr = np.zeros((1, 54))
+        arr = np.zeros(54)
         mean_arr, max_arr = arr, arr
         return mean_arr, max_arr, np.concatenate([mean_arr, max_arr])
 
@@ -331,7 +331,7 @@ def extract_social_emotion(comments, comments_words, mean_emotions_labels_dict, 
 
 def extract_dual_emotion(piece, COMMENTS=100):
     publisher_emotion = extract_publisher_emotion(
-        piece['content'], piece['content_words'], piece['content_emotions'])
+        piece['content'], piece['content_words'], piece['content_emotions_labels'], piece['content_emotions_probs'])
     mean_arr, max_arr, social_emotion = extract_social_emotion(
         piece['comments'][:COMMENTS], piece['comments_words'][:COMMENTS], piece['comments100_emotions_labels_mean_pooling'], piece['comments100_emotions_labels_max_pooling'], piece['comments100_emotions_probs_mean_pooling'], piece['comments100_emotions_probs_max_pooling'])
     emotion_gap = np.concatenate(

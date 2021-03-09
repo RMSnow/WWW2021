@@ -270,7 +270,7 @@ def extract_publisher_emotion(content, content_words, emotions_dict):
 
 def extract_social_emotion(comments, comments_words, mean_emotions_dict, max_emotions_dict):
     if len(comments) == 0:
-        arr = np.zeros((1, 54))
+        arr = np.zeros(55)
         mean_arr, max_arr = arr, arr
         return mean_arr, max_arr, np.concatenate([mean_arr, max_arr])
 

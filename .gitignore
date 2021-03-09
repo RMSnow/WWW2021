@@ -4,5 +4,6 @@
 *ipynb_checkpoints*
 
 dataset
-code/preprocess/data
 word-embedding
+code/preprocess/data
+code/train/results
