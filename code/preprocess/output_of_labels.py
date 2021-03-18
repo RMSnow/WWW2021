@@ -30,21 +30,16 @@ for dataset in datasets_ch + datasets_en:
     output_dir = os.path.join(save_dir, dataset)
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
+    label_dir = os.path.join(output_dir, 'labels')
+    if not os.path.exists(label_dir):
+        os.mkdir(label_dir)
 
     split_datasets = [json.load(open(os.path.join(
         data_dir, '{}.json'.format(t)), 'r')) for t in ['train', 'val', 'test']]
     split_datasets = dict(zip(['train', 'val', 'test'], split_datasets))
 
     for t, pieces in split_datasets.items():
-        arr_is_saved = False
-        for f in os.listdir(output_dir):
-            if '.npy' in f and t in f and 'label' in f:
-                arr_is_saved = True
-
-        if arr_is_saved:
-            continue
-
         labels_arr = get_labels_arr(pieces)
         print('{} dataset: got a {} label arr'.format(t, labels_arr.shape))
-        np.save(os.path.join(output_dir, '{}_label_{}.npy'.format(
+        np.save(os.path.join(label_dir, '{}_{}.npy'.format(
             t, labels_arr.shape)), labels_arr)

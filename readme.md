@@ -57,7 +57,53 @@ Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-2
 
 ## Code [COMMING SOON STAY TUNED]
 
-The code is in the folder `code`.
+### Requirements
+
+TODO
+
+### Project Structure
+
+TODO
+
+### Usage
+
+#### Step1: Config
+
+TODO
+
+#### Step2: Preprocess
+
+```
+cd code/preprocess
+```
+
+Get the `labels`:
+
+```
+python output_of_labels.py
+```
+
+Get the `emotion features`:
+
+```
+python input_of_emotions.py
+```
+
+Get the `semantic features`:
+
+```
+python input_of_semantics.py
+```
+
+Now, the preprocessed data are stored in `preprocess/data`
+
+#### Step3: Training and Testing
+
+```
+cd code/train
+```
+
+TODO
 
 # Citation
 

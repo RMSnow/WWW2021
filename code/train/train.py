@@ -1,3 +1,4 @@
+from MLP import MLP5Layers
 from sklearn.metrics import accuracy_score, classification_report
 from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback
 import numpy as np
@@ -6,7 +7,6 @@ import json
 import math
 import sys
 sys.path.append('../model')
-from MLP import MLP5Layers
 
 
 labels_names = ['fake', 'real', 'unverified']
@@ -22,6 +22,9 @@ if not os.path.exists(results_dir):
 
 
 def calculate_RMSE_of_RumourEval(y_pred, test_label):
+    """
+    Reference: https://figshare.com/articles/dataset/RumourEval_2019_data/8845580, rumoureval2019/home_scorer_macro.py
+    """
     errors = []
     for i in range(len(y_pred)):
         pred_label = y_pred[i].argmax()
@@ -73,28 +76,35 @@ def predict_single_output(y_pred, test_label):
     return accuracy, report
 
 
-def load_dataset(dataset):
+def load_dataset(dataset, input_types=['emotions']):
     assert dataset in datasets_ch + datasets_en
+    assert len(input_types) >= 1
+    for t in input_types:
+        assert t in ['emotions', 'semantics']
 
-    for f in os.listdir(os.path.join(dataset_dir, dataset)):
-        if '.npy' not in f:
-            continue
+    label_dir = os.path.join(dataset_dir, dataset, 'labels')
+    for f in os.listdir(label_dir):
+        f = os.path.join(label_dir, f)
+        if 'train_' in f:
+            train_label = np.load(f)
+        elif 'val_' in f:
+            val_label = np.load(f)
+        elif 'test_' in f:
+            test_label = np.load(f)
 
-        f = os.path.join(dataset_dir, dataset, f)
-        if '_label_' in f:
+    train_data, val_data, test_data = [], [], []
+    for t in input_types:
+        data_dir = os.path.join(dataset_dir, dataset, t)
+        for f in os.listdir(data_dir):
+            f = os.path.join(data_dir, f)
             if 'train_' in f:
-                train_label = np.load(f)
+                train_data.append(np.load(f))
             elif 'val_' in f:
-                val_label = np.load(f)
+                val_data.append(np.load(f))
             elif 'test_' in f:
-                test_label = np.load(f)
-        else:
-            if 'train_' in f:
-                train_data = np.load(f)
-            elif 'val_' in f:
-                val_data = np.load(f)
-            elif 'test' in f:
-                test_data = np.load(f)
+                test_data.append(np.load(f))
+    if len(input_types) == 1:
+        train_data, val_data, test_data = train_data[0], val_data[0], test_data[0]
 
     data = [train_data, val_data, test_data]
     label = [train_label, val_label, test_label]
@@ -174,7 +184,7 @@ def train(model, dataset, data, label, model_name, epochs=50, batch_size=32, use
 
 
 if __name__ == '__main__':
-    data, label = load_dataset('RumourEval-19')
+    data, label = load_dataset('Weibo-20-temporal')
 
     print()
     model = MLP5Layers(
@@ -182,4 +192,4 @@ if __name__ == '__main__':
     print(model.summary())
     print()
 
-    train(model, 'RumourEval-19', data, label, 'MLP')
+    train(model, 'Weibo-20-temporal', data, label, 'MLP')

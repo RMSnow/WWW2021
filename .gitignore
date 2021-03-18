@@ -4,6 +4,7 @@
 *ipynb_checkpoints*
 
 dataset
-word-embedding
+word-embedding/glove.twitter.27B.200d.txt
+word-embedding/sgns.weibo.bigram-char
 code/preprocess/data
 code/train/results

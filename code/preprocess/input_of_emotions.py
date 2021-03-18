@@ -30,6 +30,9 @@ for dataset in datasets_ch + datasets_en:
     output_dir = os.path.join(save_dir, dataset)
     if not os.path.exists(output_dir):
         os.mkdir(output_dir)
+    emotion_dir = os.path.join(output_dir, 'emotions')
+    if not os.path.exists(emotion_dir):
+        os.mkdir(emotion_dir)
 
     split_datasets = [json.load(open(os.path.join(
         data_dir, '{}.json'.format(t)), 'r')) for t in ['train', 'val', 'test']]
@@ -67,5 +70,5 @@ for dataset in datasets_ch + datasets_en:
             p) for p in tqdm(pieces)]
         emotion_arr = np.array(emotion_arr)
         print('{} dataset: got a {} emotion arr'.format(t, emotion_arr.shape))
-        np.save(os.path.join(output_dir, '{}_{}.npy'.format(
+        np.save(os.path.join(emotion_dir, '{}_{}.npy'.format(
             t, emotion_arr.shape)), emotion_arr)
