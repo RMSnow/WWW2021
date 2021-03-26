@@ -1,8 +1,8 @@
 # WWW 2021
 
-**Mining Dual Emotion for Fake News Detection.** [[PDF]](zhangxueyao.com/assets/www2021-dual-emotion-paper.pdf) [[Code]](https://github.com/RMSnow/WWW2021) [[Slides]](zhangxueyao.com/assets/www2021-dual-emotion-slides.pdf) [[Video]](zhangxueyao.com/assets/www2021-dual-emotion-video.mp4)
-Xueyao Zhang, Juan Cao, Xirong Li, Qiang Sheng, Lei Zhong, and Kai Shu. 
-Proceedings of 30th The Web Conference (**WWW 2021**)
+**Mining Dual Emotion for Fake News Detection.** [[PDF]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-paper.pdf) [[Code]](https://github.com/RMSnow/WWW2021) [[Slides]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-slides.pdf) [[Video]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-video.mp4) 
+
+Xueyao Zhang, Juan Cao, Xirong Li, Qiang Sheng, Lei Zhong, and Kai Shu. Proceedings of 30th The Web Conference (**WWW 2021**)
 
 ## An Overall Framework
 
