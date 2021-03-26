@@ -1,8 +1,10 @@
 # WWW 2021
 
-This is the official repository to release the code and datasets in the paper "[Mining Dual Emotion for Fake News Detection](https://arxiv.org/abs/1903.01728)", WWW 2021.
+**Mining Dual Emotion for Fake News Detection.** [[PDF]](zhangxueyao.com/assets/www2021-dual-emotion-paper.pdf) [[Code]](https://github.com/RMSnow/WWW2021) [[Slides]](zhangxueyao.com/assets/www2021-dual-emotion-slides.pdf) [[Video]](zhangxueyao.com/assets/www2021-dual-emotion-video.mp4)
+Xueyao Zhang, Juan Cao, Xirong Li, Qiang Sheng, Lei Zhong, and Kai Shu. 
+Proceedings of 30th The Web Conference (**WWW 2021**)
 
-## Mining Dual Emotion for Fake News Detection
+## An Overall Framework
 
 ![1](https://github.com/RMSnow/WWW2021/blob/master/framework.png)
 
