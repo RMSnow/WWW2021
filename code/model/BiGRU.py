@@ -22,7 +22,7 @@ from keras.layers.core import Lambda
 
 
 class EmotionEnhancedBiGRU:
-    def __init__(self, max_sequence_length, embedding_matrix, emotion_dim=0, hidden_units=32, category_num=2, l2_param=0.01, lr_param=0.001):
+    def __init__(self, max_sequence_length, embedding_matrix, emotion_dim=0, category_num=2, hidden_units=32, l2_param=0.01, lr_param=0.001):
         self.max_sequence_length = max_sequence_length
         self.embedding_matrix = embedding_matrix
         self.emotion_dim = emotion_dim

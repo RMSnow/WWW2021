@@ -1,4 +1,4 @@
-from MLP import MLP5Layers
+from config import model_names
 from sklearn.metrics import accuracy_score, classification_report
 from keras.callbacks import ModelCheckpoint, EarlyStopping, Callback
 import numpy as np
@@ -7,6 +7,8 @@ import json
 import math
 import sys
 sys.path.append('../model')
+from MLP import MLP5Layers
+from BiGRU import EmotionEnhancedBiGRU
 
 
 labels_names = ['fake', 'real', 'unverified']
@@ -93,6 +95,7 @@ def load_dataset(dataset, input_types=['emotions']):
             test_label = np.load(f)
 
     train_data, val_data, test_data = [], [], []
+    semantics_embedding_matrix = None
     for t in input_types:
         data_dir = os.path.join(dataset_dir, dataset, t)
         for f in os.listdir(data_dir):
@@ -103,6 +106,9 @@ def load_dataset(dataset, input_types=['emotions']):
                 val_data.append(np.load(f))
             elif 'test_' in f:
                 test_data.append(np.load(f))
+            elif 'embedding_matrix_' in f:
+                semantics_embedding_matrix = np.load(f)
+
     if len(input_types) == 1:
         train_data, val_data, test_data = train_data[0], val_data[0], test_data[0]
 
@@ -111,11 +117,20 @@ def load_dataset(dataset, input_types=['emotions']):
 
     print()
     for i, t in enumerate(['Train', 'Val', 'Test']):
-        print('{} data: {}, {} label: {}'.format(
-            t, data[i].shape, t, label[i].shape))
+        if len(input_types) == 1:
+            print('{} data: {}, {} label: {}'.format(
+                t, data[i].shape, t, label[i].shape))
+        else:
+            print('{} data:'.format(t))
+            for j, it in enumerate(input_types):
+                print('[{}]\t{}'.format(it, data[i][j].shape))
+            print('{} label: {}\n'.format(t, label[i].shape))
     print()
 
-    return data, label
+    if 'semantics' in input_types:
+        return data, label, semantics_embedding_matrix
+    else:
+        return data, label
 
 
 def calculate_balanced_sample_weights(train_label):
@@ -183,13 +198,37 @@ def train(model, dataset, data, label, model_name, epochs=50, batch_size=32, use
             json.dump(results, f, indent=4, ensure_ascii=False)
 
 
-if __name__ == '__main__':
-    data, label = load_dataset('Weibo-20-temporal')
+def main(experimental_dataset, experimental_model_name, epochs, batch_size, l2_param, lr_param):
+    # MLP, inputs are only emotions
+    if experimental_model_name == model_names[0]:
+        data, label = load_dataset(
+            experimental_dataset, input_types=['emotions'])
+        model = MLP5Layers(
+            input_dim=data[0].shape[-1], category_num=label[0].shape[-1], l2_param=l2_param, lr_param=lr_param).model
+
+    # BiGRU, inputs are only semantics
+    elif experimental_model_name == model_names[1]:
+        data, label, embedding_matrix = load_dataset(
+            experimental_dataset, input_types=['semantics'])
+
+        CONTENT_WORDS = 100 if experimental_dataset in datasets_ch else 50
+        model = EmotionEnhancedBiGRU(max_sequence_length=CONTENT_WORDS,
+                                     embedding_matrix=embedding_matrix, emotion_dim=0, category_num=label[0].shape[-1], l2_param=l2_param, lr_param=lr_param).model
+
+    # EmotionEnhancedBiGRU, inputs are emotions and semantics
+    else:
+        data, label, embedding_matrix = load_dataset(
+            experimental_dataset, input_types=['semantics', 'emotions'])
+
+        CONTENT_WORDS = 100 if experimental_dataset in datasets_ch else 50
+        model = EmotionEnhancedBiGRU(max_sequence_length=CONTENT_WORDS,
+                                     embedding_matrix=embedding_matrix,
+                                     emotion_dim=data[0][1].shape[-1],
+                                     category_num=label[0].shape[-1],
+                                     l2_param=l2_param, lr_param=lr_param).model
 
     print()
-    model = MLP5Layers(
-        input_dim=data[0].shape[-1], category_num=label[0].shape[-1]).model
     print(model.summary())
     print()
-
-    train(model, 'Weibo-20-temporal', data, label, 'MLP')
+    train(model=model, dataset=experimental_dataset, data=data,
+          label=label, model_name=experimental_model_name, epochs=epochs, batch_size=batch_size)

@@ -30,7 +30,7 @@ for dataset in datasets_ch + datasets_en:
     else:
         embeddings_index = load_embeddings(
             language='English', embeddings_file='../../word-embedding/glove.twitter.27B.200d.txt')
-        CONTENT_WORDS = 30
+        CONTENT_WORDS = 50
         EMBEDDING_DIM = 200
 
     data_dir = os.path.join(save_dir, dataset)

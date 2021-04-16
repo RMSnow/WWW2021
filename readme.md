@@ -1,8 +1,10 @@
 # WWW 2021
 
-**Mining Dual Emotion for Fake News Detection.** [[PDF]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-paper.pdf) [[Code]](https://github.com/RMSnow/WWW2021) [[Slides]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-slides.pdf) [[Video]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-video.mp4) 
+This is the official repository of the paper:
 
-Xueyao Zhang, Juan Cao, Xirong Li, Qiang Sheng, Lei Zhong, and Kai Shu. Proceedings of 30th The Web Conference (**WWW 2021**)
+> **Mining Dual Emotion for Fake News Detection.** [[PDF]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-paper.pdf) [[Code]](https://github.com/RMSnow/WWW2021) [[Slides]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-slides.pdf) [[Video]](https://www.zhangxueyao.com/assets/www2021-dual-emotion-video.mp4) 
+>
+> Xueyao Zhang, Juan Cao, Xirong Li, Qiang Sheng, Lei Zhong, and Kai Shu. Proceedings of 30th The Web Conference (**WWW 2021**)
 
 ## An Overall Framework
 
@@ -57,23 +59,20 @@ Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-2
 | Other Auxilary Features | English  | [Wiki: List of emoticons](https://en.wikipedia.org/wiki/List_of_emoticons), `resources/English/HowNet`, `resources/English/others` |
 |                         | Chinese  | `resources/Chinese/HowNet`, `resources/English/others`       |
 
-## Code [COMMING SOON STAY TUNED]
+## Code
 
 ### Requirements
 
-TODO
-
-### Project Structure
-
-TODO
+```
+Python==3.6.10
+Keras==2.1.2
+Tensorflow==1.13.1
+Tensorflow-GPU==1.14.0
+```
 
 ### Usage
 
-#### Step1: Config
-
-TODO
-
-#### Step2: Preprocess
+#### Step1: Preprocess
 
 ```
 cd code/preprocess
@@ -97,15 +96,20 @@ Get the `semantic features`:
 python input_of_semantics.py
 ```
 
-Now, the preprocessed data are stored in `preprocess/data`
+Now, the preprocessed data are stored in `preprocess/data`.
+
+#### Step 2: Configuration
+
+Config the experimental dataset, the model and other hyperparameters in `code/train/config.py`.
 
 #### Step3: Training and Testing
 
 ```
 cd code/train
+python master.py
 ```
 
-TODO
+Now, the results are stored in `train/results`.
 
 # Citation
 
