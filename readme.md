@@ -114,11 +114,15 @@ Now, the results are stored in `train/results`.
 # Citation
 
 ```
-@inproceedings{web2021-fake-news-detection,
+@inproceedings{10.1145/3442381.3450004,
+    author = {Zhang, Xueyao and Cao, Juan and Li, Xirong and Sheng, Qiang and Zhong, Lei and Shu, Kai},
     title = {Mining Dual Emotion for Fake News Detection},
-    author = {Xueyao Zhang and Juan Cao and Xirong Li and Qiang Sheng and Lei Zhong and Kai Shu},
-    booktitle = {The Web Conference 2021 (WWW)},
-    year = {2021}
+    year = {2021},
+    url = {https://doi.org/10.1145/3442381.3450004},
+    doi = {10.1145/3442381.3450004},
+    booktitle = {Proceedings of the Web Conference 2021},
+    pages = {3465–3476},
+    series = {WWW '21}
 }
 ```
 
