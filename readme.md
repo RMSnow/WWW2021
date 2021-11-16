@@ -49,7 +49,7 @@ Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-2
 | Type                    | Language | Resources                                                    |
 | ----------------------- | -------- | ------------------------------------------------------------ |
 | Emotion Category        | English  | https://github.com/NVIDIA/sentiment-discovery                |
-|                         | Chinese  | https://ai.baidu.com/tech/nlp/emotion_detection              |
+|                         | Chinese  | https://ai.baidu.com/tech/nlp_apply/emotion_detection        |
 | Emotion Lexicon         | English  | `resources/English/NRC`                                      |
 |                         | Chinese  | `/resources/Chinese/大连理工大学情感词汇本体库`              |
 | Emotional Intensity     | English  | `resources/English/NRC`                                      |
@@ -74,25 +74,30 @@ Tensorflow-GPU==1.14.0
 
 #### Step1: Preprocess
 
+##### Step1.1: Get the `labels`
+
 ```
 cd code/preprocess
-```
-
-Get the `labels`:
-
-```
 python output_of_labels.py
 ```
 
-Get the `emotion features`:
+##### Step1.2: Get the `emotion features`
 
 ```
+cd code/preprocess
 python input_of_emotions.py
 ```
 
-Get the `semantic features`:
+Note that the *Emotion Category* features are depended on the external resources ([NVIDIA-sentiment-discovery](https://github.com/NVIDIA/sentiment-discovery) for English, and [Baidu AI](https://ai.baidu.com/tech/nlp_apply/emotion_detection) for Chinese). And they have been saved in the dataset files (e.g.: `content_emotions`, `comments100_emotions_mean_pooling`, `content_emotions_probs`, `comments100_emotions_labels_max_pooling`, etc.). 
+
+If you want to extract emotion features for your custom datasets, you need to access these external resources and prepare *Emotion Category* features. Of course,  you can also leave *Emotion Category* unused and extract other features by `input_of_emotion.py`.
+
+##### Step1.3: Get the `semantic features`
+
+In this repo, we consider the semantic features as word embeddings. You need to download the preprained word embeddings ([see here](https://github.com/RMSnow/WWW2021/blob/master/word-embedding/readme.md) for more details) before running the following code:
 
 ```
+cd code/preprocess
 python input_of_semantics.py
 ```
 

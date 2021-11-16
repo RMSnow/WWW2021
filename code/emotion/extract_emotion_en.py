@@ -12,7 +12,7 @@ nvidia_emotions = ['anger', 'anticipation', 'disgust',
 nvidia_emotions.sort()
 
 
-def nvidia_arr(emotions_labels_dict, emotions_probs_dict):
+def nvidia_arr(emotions_labels_dict=None, emotions_probs_dict=None):
     arr = np.zeros(len(nvidia_emotions)*2)
 
     if emotions_labels_dict is None or emotions_probs_dict is None:
@@ -330,6 +330,10 @@ def extract_social_emotion(comments, comments_words, mean_emotions_labels_dict, 
 
 
 def extract_dual_emotion(piece, COMMENTS=100):
+    for k in ['content_emotions_labels', 'content_emotions_probs', 'comments100_emotions_labels_mean_pooling', 'comments100_emotions_labels_max_pooling', 'comments100_emotions_probs_mean_pooling', 'comments100_emotions_probs_max_pooling']:
+        if k not in piece:
+            piece[k] = None
+
     publisher_emotion = extract_publisher_emotion(
         piece['content'], piece['content_words'], piece['content_emotions_labels'], piece['content_emotions_probs'])
     mean_arr, max_arr, social_emotion = extract_social_emotion(

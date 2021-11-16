@@ -12,7 +12,7 @@ baidu_emotions_2_index = dict(
     zip(baidu_emotions, [i for i in range(len(baidu_emotions))]))
 
 
-def baidu_arr(emotions_dict):
+def baidu_arr(emotions_dict=None):
     arr = np.zeros(len(baidu_emotions))
 
     if emotions_dict is None:
@@ -290,6 +290,10 @@ def extract_social_emotion(comments, comments_words, mean_emotions_dict, max_emo
 
 
 def extract_dual_emotion(piece, COMMENTS=100):
+    for k in ['content_emotions', 'comments100_emotions_mean_pooling', 'comments100_emotions_max_pooling']:
+        if k not in piece:
+            piece[k] = None
+
     publisher_emotion = extract_publisher_emotion(
         piece['content'], piece['content_words'], piece['content_emotions'])
     mean_arr, max_arr, social_emotion = extract_social_emotion(
