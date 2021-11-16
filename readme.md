@@ -49,11 +49,7 @@ Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-2
 | Type                    | Language | Resources                                                    |
 | ----------------------- | -------- | ------------------------------------------------------------ |
 | Emotion Category        | English  | https://github.com/NVIDIA/sentiment-discovery                |
-<<<<<<< HEAD
 |                         | Chinese  | https://ai.baidu.com/tech/nlp_apply/emotion_detection        |
-=======
-|                         | Chinese  | https://ai.baidu.com/tech/nlp_apply/emotion_detection              |
->>>>>>> 02998a03e6fbe20ae0614a0532161d035506f287
 | Emotion Lexicon         | English  | `resources/English/NRC`                                      |
 |                         | Chinese  | `/resources/Chinese/大连理工大学情感词汇本体库`              |
 | Emotional Intensity     | English  | `resources/English/NRC`                                      |
