@@ -22,7 +22,7 @@ Dual Emotion Features are concatenated with the features from **d)** Fake News D
 
 ## Datasets
 
-The datasets are available at https://drive.google.com/drive/folders/1pjK0BYiiJt0Ya2nRIrOLCVo-o53sYRBV?usp=sharing.
+The datasets are available at https://drive.google.com/drive/folders/1pjK0BYiiJt0Ya2nRIrOLCVo-o53sYRBV?usp=sharing. The downloaded datasets (i.e., the  `dataset` folder) need to be moved into the root path of this project.
 
 ### RumourEval-19
 
@@ -30,7 +30,13 @@ The raw dataset is released by [SemEval-2019 Task 7](https://competitions.codala
 
 > Genevieve Gorrell, Ahmet Aker, Kalina Bontcheva, Elena Kochkina, Maria Liakata, Arkaitz Zubiaga, Leon Derczynski (2019). SemEval-2019 Task 7: RumourEval, Determining Rumour Veracity and Support for Rumours. Proceedings of the 13th International Workshop on Semantic Evaluation, ACL.
 
-After preprocessing, our experimental dataset is in the folder `dataset/RumourEval-19`.
+Our experimental dataset is in the folder `dataset/RumourEval-19`, which contains three json files. In every json file,
+
+- the `id` identifies the unique id of the post.
+- the `label` identifies the veracity of the post, whose value ranges in [ `fake`,  `real`, `unverified`]. 
+- the `content` is the content of the post.
+- the `comments` are the users' comments list towards the post.
+- the `content_emotions_labels` and `cotent_emotions_probs` are the *Emotion Category* features of the content. And the `comments100_emotions_labels_mean_pooling`, `comments100_emotions_labels_max_pooling`, `comments100_emotions_probs_mean_pooling`, and `comments100_emotions_probs_max_pooling` are the *Emotion Category* features of the earliest 100 comments. The way how to use these features will be described in [here](https://github.com/RMSnow/WWW2021#step12-get-the-emotion-features).
 
 ### Weibo-16
 
@@ -38,11 +44,21 @@ The original dataset is firstly proposed in:
 
 > Jing Ma, Wei Gao, Prasenjit Mitra, Sejeong Kwon, Bernard J Jansen, Kam-Fai Wong, and Meeyoung Cha. 2016. Detecting rumors from microblogs with recurrent neural networks. In IJCAI 2016. 3818–3824.
 
-In *Section 4.1.2* and *Appendix A* of our paper, we described that there are many fake news duplications in the original dataset. The original version of Weibo-16 is in the folder `dataset/Weibo-16-original`, and our experimental dataset (a deduplicated version) of Weibo-16 is in the folder `dataset/Weibo-16`.
+In *Section 4.1.2* and *Appendix A* of our paper, we described that there are many fake news duplications in the original dataset. The original version of Weibo-16 is in the folder `dataset/Weibo-16-original`, and our experimental dataset (a deduplicated version) of Weibo-16 is in the folder `dataset/Weibo-16`. In every json file in these folders, 
+
+- the `label` identifies the veracity of the post, whose value ranges in [ `fake`,  `real`]. 
+- the `content` is the content of the post.
+- the `comments` are the users' comments list towards the post.
+- the `content_emotions` are the *Emotion Category* features of the content. And the `comments100_emotions_mean_pooling` and `comments100_emotions_max_pooling` are the *Emotion Category* features of the earliest 100 comments. The way how to use these features will be described in [here](https://github.com/RMSnow/WWW2021#step12-get-the-emotion-features).
 
 ### Weibo-20
 
-Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-20`. Besides, in *Section 4.4.3* of the paper, we conducted the experiments under the real-world scenario simulation. This temporal version of Weibo-20 is in the folder `dataset/Weibo-20-temporal`.
+Weibo-20 is our newly proposed dataset, and it is in the folder `dataset/Weibo-20`. Besides, in *Section 4.4.3* of the paper, we conducted the experiments under the real-world scenario simulation. This temporal version of Weibo-20 is in the folder `dataset/Weibo-20-temporal`. In every json file in these folders, 
+
+- the `label` identifies the veracity of the post, whose value ranges in [ `fake`,  `real`]. 
+- the `content` is the content of the post.
+- the `comments` are the users' comments list towards the post.
+- the `content_emotions` are the *Emotion Category* features of the content. And the `comments100_emotions_mean_pooling` and `comments100_emotions_max_pooling` are the *Emotion Category* features of the earliest 100 comments. The way how to use these features will be described in [here](https://github.com/RMSnow/WWW2021#step12-get-the-emotion-features).
 
 ## Emotion Resources
 
